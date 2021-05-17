@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 //import { HEROES } from '../mock-heroes'; //not needed after incorporating the service layer
 import { HeroService } from '../hero.service';
+import { MessageService } from '../message.service';
 
 /* @Component is a decorator function that specifies the angular metadata
 for the component */
@@ -35,7 +36,7 @@ export class HeroesComponent implements OnInit {
   // };
 
   //dependency injection. defines heroService as a HeroService injection site
-  constructor(private heroService: HeroService) { }
+  constructor(private heroService: HeroService, private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.getHeroes();
@@ -43,6 +44,7 @@ export class HeroesComponent implements OnInit {
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
+    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
   }
 
   //retrieve heroes from service
