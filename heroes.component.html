@@ -1,0 +1,16 @@
+
+<!-- SHOW HERO DETAILS -->
+<!-- <h2> {{ hero.name | uppercase }} Details </h2> interpolation with built-in pipe -->
+<!-- <div><span>id: </span> {{ hero.id }} </div>
+<div><span>name: </span> {{ hero.name }} </div>
+<div><span>role: </span> {{ hero.role }} </div> -->
+<br>
+<h2>Heroes</h2>
+<ul class="heroes">
+    <li *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero"> <!-- repeater directive making li the host element. Then, event binding, Then, toggle CSS class with class binding upon hero selection-->
+        <span class="badge"> {{ hero.id }}</span> {{ hero.name }} 
+    </li>
+</ul>
+
+<app-hero-detail [hero]="selectedHero"></app-hero-detail> <!-- one-way property binding HeroesComponent.selectedHero to element's hero property-->
+
