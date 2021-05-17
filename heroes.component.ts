@@ -8,7 +8,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import { HEROES } from '../mock-heroes';
+//import { HEROES } from '../mock-heroes'; //not needed after incorporating the service layer
+import { HeroService } from '../hero.service';
 
 /* @Component is a decorator function that specifies the angular metadata
 for the component */
@@ -20,7 +21,8 @@ for the component */
 /* OnInit is a lifecycle hook. ALWAYS export the component class so it can
 be imported elsewhere */
 export class HeroesComponent implements OnInit {
-  heroes = HEROES; //HEROES comes from the mock-heroes interface
+  //heroes = HEROES; //HEROES comes from the mock-heroes interface before service layer is added
+  heroes: Hero[] = [];
 
   //object of type Hero. ? represents an object without a value but lets it exist
   selectedHero?: Hero;
@@ -32,13 +34,24 @@ export class HeroesComponent implements OnInit {
   //   role: 'God of the wind'
   // };
 
-  constructor() { }
+  //dependency injection. defines heroService as a HeroService injection site
+  constructor(private heroService: HeroService) { }
 
   ngOnInit(): void {
+    this.getHeroes();
   }
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
+  }
+
+  //retrieve heroes from service
+  getHeroes(): void {
+    //retrieves heroes synchronously. this method only works with mock data rn -> we will make it asynchronous to work with others
+    //this.heroes = this.heroService.getHeroes();
+
+    //use the below after including rxjs in service to make asynchronous. this.heroService.getHeroes() is the Observable in this case
+    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
   }
 
 }
