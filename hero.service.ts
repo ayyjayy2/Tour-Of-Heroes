@@ -10,6 +10,7 @@ that's included in the dependency injection system. aka it provides an injectabl
 service. */
 import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
+import { Observable, of } from 'rxjs'; //simulate getting data from server with rxjs of() function
 
 //@Injectable decorator accepts a metadata object for service
 @Injectable({
@@ -20,7 +21,8 @@ export class HeroService {
   constructor() { }
 
   //method to return all mock heroes
-  getHeroes(): Hero[] {
-    return HEROES;
+  getHeroes(): Observable<Hero[]> {
+    const heroes = of(HEROES);
+    return heroes;
   }
 }
