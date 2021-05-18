@@ -7,10 +7,20 @@
 <br>
 <h2>Heroes</h2>
 <ul class="heroes">
-    <li *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero === selectedHero"> <!-- repeater directive making li the host element. Then, event binding, Then, toggle CSS class with class binding upon hero selection-->
-        <span class="badge"> {{ hero.id }}</span> {{ hero.name }} 
+    <li *ngFor="let hero of heroes">
+        <a routerLink="/detail/{{hero.id}}">
+             <span class="badge"> {{ hero.id }}</span> {{ hero.name }} 
+        </a>
     </li>
 </ul>
 
-<app-hero-detail [hero]="selectedHero"></app-hero-detail> <!-- one-way property binding HeroesComponent.selectedHero to element's hero property-->
+<!-- what it was before we added param'd routerLink [also included span class badge]
+         <li *ngFor="let hero of heroes"
+            (click)="onSelect(hero)" 
+            [class.selected]="hero === selectedHero"> 
+      // repeater directive making li the host element. Then, event binding, Then, toggle CSS class with class binding upon hero selection-->
+       
+
+<!-- below was deleted to send it to its own route-->
+<!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> one-way property binding HeroesComponent.selectedHero to element's hero property -->
 

@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 //import { HEROES } from '../mock-heroes'; //not needed after incorporating the service layer
 import { HeroService } from '../hero.service';
-import { MessageService } from '../message.service';
+// import { MessageService } from '../message.service'; //removed after routes added
 
 /* @Component is a decorator function that specifies the angular metadata
 for the component */
@@ -26,7 +26,7 @@ export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
 
   //object of type Hero. ? represents an object without a value but lets it exist
-  selectedHero?: Hero;
+  //selectedHero?: Hero;  -> removed after routes added
 
   // first stage before using an interface
   // hero: Hero = {
@@ -36,16 +36,18 @@ export class HeroesComponent implements OnInit {
   // };
 
   //dependency injection. defines heroService as a HeroService injection site
-  constructor(private heroService: HeroService, private messageService: MessageService) { }
+  //took out 'private messageService: MessageService' after added routes
+  constructor(private heroService: HeroService) { }
 
   ngOnInit(): void {
     this.getHeroes();
   }
 
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
-  }
+  //no longer needed after making details it's own route and using a param'd routerLink with the id
+  // onSelect(hero: Hero): void {
+  //   this.selectedHero = hero;
+  //   this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
+  // }
 
   //retrieve heroes from service
   getHeroes(): void {
