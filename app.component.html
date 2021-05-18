@@ -1,2 +1,9 @@
 <h1> {{ title }} </h1>
-<app-heroes></app-heroes>
+<nav>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/heroes">Heroes</a>
+</nav>
+
+<!-- <app-heroes></app-heroes>    replaced with router-outlet so it will only display when it is nav'd to--> 
+<router-outlet></router-outlet>
+<app-messages></app-messages>
