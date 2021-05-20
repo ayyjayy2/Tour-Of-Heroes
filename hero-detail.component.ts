@@ -42,4 +42,11 @@ export class HeroDetailComponent implements OnInit {
     this.location.back();
   }
 
+  //part 6: persists hero name changes using hero service updateHero() then nav's back to previous view
+  save(): void{
+    if(this.hero){
+      this.heroService.updateHero(this.hero).subscribe(() => this.goBack());
+    }
+  }
+
 }
