@@ -8,21 +8,37 @@ Following the Angular tutorial [https://angular.io/tutorial] for an intro Angula
 Outline/Order of project:
 
 I. Part 0: Creating the new project 
+
     A. ng new <proj_name>
+    
     B. Data interpolation binding
+    
 II. Part 1: The hero Editor
+
     A. Create components
+    
         1. ng g c <comp_name>
+        
         2. adding selector to html to display component view
+        
     B. Creating interface
+   
     C. displaying object attributes to html 
+    
     D. built-in pipes (uppercase)
+    
     E. Editting hero using two-way data binding 
+    
         1. [(ngModel)]="hero.name"
+        
         2. needs FormsModule
+        
     F. adding to AppModule
+    
 III. Part 2: Display a list
+
     A. creating mock heroes array in mock-heroes.ts file
+    
     B. Displaying heroes 
         1. *ngFor
     C. Viewing details
