@@ -5,14 +5,27 @@
 <div><span>name: </span> {{ hero.name }} </div>
 <div><span>role: </span> {{ hero.role }} </div> -->
 <br>
+<!-- part 6: ADD NEW HERO-->
+<div>
+    <label for="new-hero">Hero name: </label>
+    <input id="new-hero" #heroName />
+
+    <!-- (click) passes input value to add() then clears input -->
+    <button class="add-button" (click)="add(heroName.value); heroName.value=''">Add hero</button>
+</div>
+
+<!-- DISPLAY LIST OF HEROES-->
 <h2>Heroes</h2>
 <ul class="heroes">
     <li *ngFor="let hero of heroes">
         <a routerLink="/detail/{{hero.id}}">
              <span class="badge"> {{ hero.id }}</span> {{ hero.name }} 
         </a>
+        <!-- part 6: DELETE HERO-->
+        <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
     </li>
 </ul>
+<br>
 
 <!-- what it was before we added param'd routerLink [also included span class badge]
          <li *ngFor="let hero of heroes"
